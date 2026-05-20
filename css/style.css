@@ -627,6 +627,9 @@ ul {
     /* Máscara de gradiente para suavizar as bordas laterais */
     -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
     mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 .carousel-track {
@@ -634,10 +637,16 @@ ul {
     gap: 20px;
     width: max-content;
     animation: scrollMarquee 40s linear infinite;
+
+    will-change: transform;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
-.carousel-track:hover {
-    animation-play-state: paused; /* Pausa ao colocar o mouse */
+@media (hover: hover) and (pointer: fine) {
+    .carousel-track:hover {
+        animation-play-state: paused; /* Pausa ao colocar o mouse */
+    }
 }
 
 @keyframes scrollMarquee {
@@ -662,10 +671,12 @@ ul {
     cursor: pointer;
 }
 
-.carousel-slide:hover {
-    transform: scale(1.05);
-    box-shadow: 0 15px 30px rgba(234, 93, 40, 0.3);
-    z-index: 10;
+@media (hover: hover) and (pointer: fine) {
+    .carousel-slide:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(234, 93, 40, 0.3);
+        z-index: 10;
+    }
 }
 
 .carousel-slide img {
